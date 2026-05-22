@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我命由我不由天｜为什么我们都偷偷爱着一个"张雪"</title>
+<style>
+  :root {
+    --bg: #fdf8f2;
+    --card-bg: #fffdf9;
+    --text: #3d3226;
+    --text-light: #6b5e4f;
+    --accent: #c44545;
+    --accent-soft: #d4856b;
+    --gold: #b8944b;
+    --gold-light: #d4bc7c;
+    --border: #e8dccf;
+    --highlight-bg: #fef5ec;
+    --quote-bg: #faf3e8;
+    --divider: #e0d3c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f5efe6;
+    color: var(--text);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--bg);
+    min-height: 100vh;
+    box-shadow: 0 0 60px rgba(0,0,0,0.06);
+  }
+
+  /* ===== 封面头图 ===== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(10,10,30,0.3) 0%,
+      rgba(10,10,30,0.5) 60%,
+      rgba(10,10,30,0.85) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 32px;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    border: 1px solid rgba(212,188,124,0.4);
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.45;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .hero h1 .pipe {
+    color: var(--gold-light);
+    margin: 0 4px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 14px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== 正文区域 ===== */
+  .main {
+    padding: 36px 28px 48px;
+  }
+
+  /* 段落 */
+  .main p {
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+  .main p.lead {
+    font-size: 17px;
+    color: var(--text-light);
+    line-height: 2;
+    text-indent: 2em;
+  }
+
+  /* 引用块 */
+  .quote-block {
+    margin: 28px 0;
+    padding: 22px 24px;
+    background: var(--quote-bg);
+    border-left: 3px solid var(--accent-soft);
+    border-radius: 0 8px 8px 0;
+  }
+  .quote-block p {
+    font-size: 17px;
+    font-weight: 500;
+    color: #5a3e2b;
+    margin: 0;
+    line-height: 1.8;
+    text-align: left;
+  }
+
+  /* 章节标题 */
+  .chapter {
+    text-align: center;
+    margin: 44px 0 28px;
+    position: relative;
+  }
+  .chapter-num {
+    display: block;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .chapter h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 2px;
+  }
+  .chapter::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent-soft);
+    margin: 14px auto 0;
+    border-radius: 1px;
+  }
+
+  /* 配图 */
+  .figure {
+    margin: 28px 0;
+    text-align: center;
+  }
+  .figure img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .figure figcaption {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* 带图标的要点 */
+  .point-list {
+    margin: 24px 0;
+  }
+  .point-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding: 18px 20px;
+    background: var(--highlight-bg);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .point-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .point-icon.rose { background: #fde8e8; }
+  .point-icon.gold { background: #fdf3dc; }
+  .point-icon.leaf { background: #e8f5e9; }
+  .point-text strong {
+    display: block;
+    font-size: 16px;
+    color: #5a3e2b;
+    margin-bottom: 4px;
+  }
+  .point-text span {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  /* 金句突出 */
+  .highlight {
+    margin: 28px 0;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #fef9f0, #fdf4e4);
+    border: 1px solid var(--gold-light);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .highlight p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #8b6914;
+    margin: 0;
+    letter-spacing: 1px;
+    line-height: 1.8;
+  }
+
+  /* 分隔线 */
+  .divider {
+    text-align: center;
+    margin: 36px 0;
+    color: var(--divider);
+    font-size: 18px;
+    letter-spacing: 8px;
+  }
+
+  /* 尾声 */
+  .ending {
+    margin-top: 44px;
+    padding: 30px 24px;
+    background: linear-gradient(180deg, #faf5ed, #fdf8f2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .ending h3 {
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+  .ending p {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 2;
+  }
+  .ending .big-line {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 20px 0 8px;
+  }
+
+  /* 互动区 */
+  .interact {
+    margin-top: 40px;
+    padding: 28px 24px;
+    background: #fffdf9;
+    border-radius: 12px;
+    border: 1px dashed var(--border);
+  }
+  .interact p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .interact .heart {
+    text-align: center;
+    font-size: 28px;
+    margin: 16px 0 4px;
+    color: var(--accent);
+  }
+  .interact .signoff {
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+    letter-spacing: 4px;
+    margin-top: 12px;
+  }
+
+  /* 响应式 */
+  @media (max-width: 480px) {
+    .hero { height: 320px; }
+    .hero h1 { font-size: 22px; }
+    .main { padding: 28px 18px 36px; }
+    .main p { font-size: 15px; }
+    .chapter h2 { font-size: 20px; }
+    .quote-block p { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== 封面头图 ===== -->
+  <div class="hero">
+    <img class="hero-img"
+         src="https://image11.m1905.cn/uploadfile/2025/0127/thumb_1_147_100_20250127113906239308.jpg"
+         alt="哪吒之魔童闹海海报"
+         onerror="this.style.display='none'">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag">深度好文</span>
+      <h1>我命由我不由天<span class="pipe">｜</span>为什么我们都偷偷爱着一个"张雪"</h1>
+      <p class="hero-sub">献给每一个不服输的你</p>
+    </div>
+  </div>
+
+  <!-- ===== 正文 ===== -->
+  <div class="main">
+
+    <!-- 引子 -->
+    <p class="lead">
+      周五晚上八点，我泡了一杯桂花茶，刷到了张雪在领奖台上喷香槟的视频。
+    </p>
+    <p>
+      视频里的他，皮肤黝黑，眼睛通红。手里举着WSBK世界超摩锦标赛的奖杯——那是中国摩托车制造商，第一次拿到这个奖杯。
+    </p>
+
+    <div class="quote-block">
+      <p>"这就是中国版的哪吒啊。"</p>
+    </div>
+
+    <p>
+      我愣住了，然后笑了，又有点想哭。
+    </p>
+    <p>
+      那一刻我突然意识到——那些被生活磨过、被现实碰过、嘴上说着"不相信爱情"的我们，其实一直在偷偷喜欢着一种男人。
+    </p>
+    <p>
+      他叫张雪。他也叫，哪吒。
+    </p>
+
+    <!-- ===== 配图：分隔 ===== -->
+    <div class="figure">
+      <img src="https://www.news.cn/sports/20260403/8aef7ddf9a9141038e5a56bf86e09395/202604038aef7ddf9a9141038e5a56bf86e09395_303a9f8c35784be491fcbd23e8e48421.JPG"
+           alt="张雪被记者包围采访"
+           onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- ===== 壹 ===== -->
+    <div class="chapter">
+      <span class="chapter-num">壹</span>
+      <h2>他是谁？</h2>
+    </div>
+
+    <p>
+      一个湖南怀化的小镇少年。父母离异，奶奶带大，十岁就开始和妹妹独立生活。十四岁初中没毕业，去摩托车修理行当学徒。
+    </p>
+    <p>
+      十九岁那年，他骑着一辆比自己年龄还大的二手本田，在暴雨里追着电视台的采访车跑了一百多公里。
+    </p>
+    <p>
+      记者问他："上电视真的那么重要吗？"
+    </p>
+    <p>
+      他说："上电视不重要。我只是想，让车队看到我。"
+    </p>
+    <p>
+      三十七岁，他从干了多年的公司裸辞，朋友圈写了一句：
+    </p>
+
+    <div class="quote-block">
+      <p>"本人决定辞职，去追求我的星辰大海。"</p>
+    </div>
+
+    <p>
+      他借了七百万发工资。把自己的名字"张雪"两个字，赌在了产品上。
+    </p>
+    <p>
+      2026年3月28日，葡萄牙波尔蒂芒赛道，张雪机车冲过终点线的那一刻——他在工厂里哭得像个孩子。
+    </p>
+    <p>
+      那一杯香槟，打破了杜卡迪、川崎几十年的垄断。
+    </p>
+
+    <!-- ===== 贰 ===== -->
+    <div class="chapter">
+      <span class="chapter-num">贰</span>
+      <h2>张雪和哪吒，太像了</h2>
+    </div>
+
+    <!-- 配图 -->
+    <div class="figure">
+      <img src="https://www.news.cn/sports/20260403/8aef7ddf9a9141038e5a56bf86e09395/202604038aef7ddf9a9141038e5a56bf86e09395_512a7337d17b4965a9ecead799c12e50.jpg"
+           alt="张雪接受新华社采访"
+           onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <p>
+      <strong>第一像：</strong>都是被命运按在地上摩擦过的"小孩"。
+    </p>
+    <p>
+      哪吒生下来就是颗魔丸，被全村人指指点点。张雪从小，是别人嘴里"没爹没妈的野孩子"。世界没有温柔地接住他们。但他们硬是，从泥里爬了起来。
+    </p>
+    <p>
+      <strong>第二像：</strong>都在和"人心中的成见"较劲。
+    </p>
+
+    <div class="quote-block">
+      <p>"人心中的成见是一座大山"</p>
+    </div>
+
+    <p>
+      每个看哭过的人都懂。中国摩托车被叫了几十年"低价低质"，张雪这辈子，就在干一件事——搬开这座山。
+    </p>
+    <p>
+      <strong>第三像：</strong>都不够好看，都不够完美，但都太真实。
+    </p>
+    <p>
+      哪吒不是传统意义上的英雄——大头，烟熏妆，吊儿郎当。张雪也不是包装得很好的企业家——晒得黝黑，说话带刺，被采访时眼眶说红就红。
+    </p>
+    <p>
+      但你偏偏，被这种"不修饰"打动了。
+    </p>
+
+    <!-- ===== 叁 ===== -->
+    <div class="chapter">
+      <span class="chapter-num">叁</span>
+      <h2>为什么我们女人，会喜欢这样的男人？</h2>
+    </div>
+
+    <p>
+      姐妹，我们认真聊聊这件事。
+    </p>
+    <p>
+      我们这一代女人，见过太多被包装出来的"完美男人"。精致的西装、精致的朋友圈、精致的情话。健身房打卡的腹肌，米其林餐厅的烛光。日常营业像广告片，谈起爱情像PPT。
+    </p>
+    <p>
+      他们什么都好。除了——不真。
+    </p>
+    <p>
+      最后给我们一个，不精致的结局。我们累了。
+    </p>
+    <p>
+      所以当张雪这样的男人出现的时候——一个眼里有光、手上有茧、心里有一件愿意死磕一辈子的事的男人——我们身体里某根弦，被轻轻拨动了。
+    </p>
+    <p>
+      不是因为他帅，不是因为他成功——成功的男人多了去了，帅的男人也不缺。
+    </p>
+    <p>
+      是因为我们看懂了三件事：
+    </p>
+
+    <div class="point-list">
+      <div class="point-item">
+        <div class="point-icon rose">🌹</div>
+        <div class="point-text">
+          <strong>一个有热爱的男人，不会无聊。</strong>
+          <span>他十四岁喜欢摩托车，到三十九岁还在喜欢。这种"一辈子只认一件事"的笃定，比任何情话都让人安心。</span>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon gold">💪</div>
+        <div class="point-text">
+          <strong>一个肯死磕的男人，不会逃跑。</strong>
+          <span>一个会在暴雨里追100公里、会借700万发工资、会把自己名字赌在产品上的人——他爱一个人的时候，也不会轻易认输。</span>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon leaf">💎</div>
+        <div class="point-text">
+          <strong>一个不修饰苦难的男人，最配得上真心。</strong>
+          <span>他不会在你面前演完美。他会让你看见他的疲惫、脆弱、不甘心。这种坦诚，是这个时代最贵的东西。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 肆 ===== -->
+    <div class="chapter">
+      <span class="chapter-num">肆</span>
+      <h2>其实，我们爱的是另一个自己</h2>
+    </div>
+
+    <p>
+      但你知道吗，姐妹。
+    </p>
+    <p>
+      我们之所以会被张雪打动、被哪吒打动，更深的原因是——我们在他们身上，看见了那个被自己藏起来很久的自己。
+    </p>
+    <p>
+      那个14岁就想做点什么的自己。
+    </p>
+    <p>
+      那个被生活按下去过、但偷偷不服气的自己。
+    </p>
+    <p>
+      那个心里其实一直有一座山想搬开的自己。
+    </p>
+
+    <!-- 配图 -->
+    <div class="figure">
+      <img src="https://image11.m1905.cn/uploadfile/2025/0127/thumb_1_147_100_20250127113906371671.jpg"
+           alt="哪吒魔童闹海角色海报"
+           onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <p>
+      我们这一代女人，谁不是哪吒。
+    </p>
+    <p>
+      可能是单亲家庭里咬牙长大的女孩。
+    </p>
+    <p>
+      可能是被相亲市场打过分的"剩女"。
+    </p>
+    <p>
+      可能是被职场天花板撞过头的姐姐。
+    </p>
+    <p>
+      可能是产后被全世界忽略的妈妈。
+    </p>
+    <p>
+      我们也都在，和"人心中的成见"较劲。
+    </p>
+    <p>
+      只是我们的"暴雨追100公里"，可能是月薪三千还要养家时偷偷报的网课；可能是被分手后第二天还要笑着开晨会；可能是身边所有人都说"差不多就行了"，你偏偏咬牙说"我不甘心"。
+    </p>
+
+    <div class="highlight">
+      <p>所以张雪夺冠那一刻——<br>我们流下来的眼泪，一半是为他，一半是为我们自己。</p>
+    </div>
+
+    <!-- ===== 尾声 ===== -->
+    <div class="divider">··· ❀ ···</div>
+
+    <div class="ending">
+      <h3>尾声</h3>
+      <p>
+        周五的晚上，茶凉了。
+      </p>
+      <p>
+        我突然很想跟正在熬夜加班的你、正在哄孩子睡觉的你、正在挤地铁回家的你，说一句话——
+      </p>
+      <p class="big-line">
+        你身上有哪吒，你也可以是张雪。
+      </p>
+      <p>
+        你不需要等一个英雄来救你。你可以自己，成为那道追着采访车跑100公里的光。
+      </p>
+      <p class="big-line" style="color: #8b6914;">
+        我命由我不由天。
+      </p>
+      <p>
+        愿你在2026年剩下的日子里，都活出属于自己的，"领奖台时刻"。
+      </p>
+    </div>
+
+    <!-- 互动区 -->
+    <div class="interact">
+      <p>💬 留言告诉我：你身边有没有"哪吒型"的人？或者，你自己是不是？</p>
+      <p>👍 如果有被打动到，请点亮右下角的"在看"</p>
+      <p>⭐ 请收藏起来，某个emo的深夜回来给自己打打气</p>
+      <p>🔄 转发给那个最近"很哪吒"的姐妹</p>
+      <div class="heart">❤</div>
+      <p class="signoff">— 晚 安 —</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
